@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Stapi</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link href='http://fonts.googleapis.com/css?family=Maven+Pro' rel='stylesheet' type='text/css'>
+		
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/pepper-grinder/jquery-ui.css" />
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+		<script src="jquery.nicescroll.min.js"></script>
+		<script>
+		$(function() {
+			jQuery( "#check" ).button();
+			jQuery( "#scene_explorer" ).dialog({autoOpen: false});
+			jQuery( "#scene_menu" ).dialog({autoOpen: false});
+			jQuery( "#scene_paths" ).dialog({autoOpen: false});
+			jQuery( "#scene_objects_prop" ).dialog({autoOpen: false});
+			jQuery( "#scene_materials_prop" ).dialog({autoOpen: false});
+			jQuery( ".ui-dialog" ).mouseover(function() {
+				controls.enabled = false;
+			});
+			jQuery( "#user_menu" ).mouseenter(function() {
+				controls.enabled = false;
+			});
+			jQuery( ".ui-dialog, #user_menu" ).mouseleave(function() {
+				controls.enabled = true;
+			});
+			jQuery('body').keydown(function(event){
+				if (event.keyCode == 73){
+					jQuery( "#scene_explorer" ).dialog( "open" );
+					jQuery( "#scene_menu" ).dialog( "open" );
+					jQuery( "#scene_paths" ).dialog( "open" );
+				}
+			});
+			jQuery('body').keydown(function(event){
+				if (event.keyCode == 79){
+					jQuery( "#scene_objects_prop" ).dialog( "open" );
+					jQuery( "#scene_materials_prop" ).dialog( "open" );
+				}
+			});
+			jQuery(['info0.jpg','info1.jpg','info2.jpg','info3.jpg','info4.jpg','textures/cube/skybox2/nx.jpg','textures/cube/skybox2/ny.jpg','textures/cube/skybox2/nz.jpg','textures/cube/skybox2/px.jpg','textures/cube/skybox2/py.jpg','textures/cube/skybox2/pz.jpg']).each(function(){
+				jQuery('<img/>')[0].src = this;
+			});
+			jQuery("#user_menu").niceScroll({cursorcolor:"#7C7C7C",cursorborder:"0px solid #fff"});
+		});
+		</script>
+	</head>
+
+	<body>
+		<div id="scene_explorer" title="Scene Inspector">
+			<div id="section_general_info"></div>
+			<div id="section_exp"></div>
+		</div>
+		<div id="scene_menu" title="Scene Menu">
+			<div id="section_general_prop"></div>
+		</div>
+		<div id="scene_paths" title="Scene Paths">
+			<div id="section_path_list"></div>
+		</div>
+		<div id="scene_objects_prop" title="Object Properties"></div>
+		<div id="scene_materials_prop" title="Materials"></div>
+	
+		<div id="progressbar" ><div id="bar"></div></div>
+		<div id="progressinfo" ><img src='info.png'></img></div></div>
+		<div id="progress">
+			<img id='spinner' src='loader.gif'></img>
+			<img id='spinnerlogo' class="disabled" src='loaderlogo.jpg'></img>
+			<div id='progress_text'>
+				<div id="message"><p>We are enlighting</p><p>your content</p></div>
+				<div id="start" class="disabled"><p>Explore now!</p><p><span id="startLD">LD</span> / <span id="startHD">HD</span></p></div>
+			</div>
+		</div>
+		<div id="vendor_logo">
+			<img src='vendorlogo.png'></img>	
+		</div>
+		<div id="user_controls">
+			<img id='ui_mode' class='ui_buttons' data-state='orbit' src='ui_mode1.png'></img>
+			<img id='ui_pause'  class='ui_buttons' src='ui_prev.png'></img>		
+		</div>
+		<div id="user_controls_left">
+			<img id='ui_menu'  class='ui_buttons' src='ui_menu.png' data-vp='none' data-state='hidden'></img>		
+		</div>
+		<div id="user_menu">
+			<div id="section_solar_prop">
+				<h2>Solar Orientation</h2>
+				<p>Rotate the solar wheel to change the current time</p>
+			</div>
+			<div id="section_Keypoints_prop">
+				<h2>Interest Views</h2>
+				<p>Pick a view to discover on of the viewer awsome tools</p>
+			</div>
+			<div id="section_material_change_prop">
+				<h2>Material Editor</h2>
+				<p>Choose a new material for the building skin and change it's opacity</p>
+			</div>
+		</div>
+		<div id="user_popup"></div>
+
+		<script src="../build/three.min.js"></script>
+		
+		<script src="config.js"></script>
+		<script src="config_advanced.js"></script>
+		
+		<script src="js/shaders/CopyShader.js"></script>
+		<script src="js/shaders/DotScreenShader.js"></script>
+
+		<script src="js/postprocessing/EffectComposer.js"></script>
+		<script src="js/postprocessing/RenderPass.js"></script>
+		<script src="js/postprocessing/MaskPass.js"></script>
+		<script src="js/postprocessing/ShaderPass.js"></script>
+		
+		<script src="js/shaders/BokehShader.js"></script>
+		<script src="js/shaders/SSAOShader.js"></script>
+		
+		<script src="js/controls/TrackballControls.js"></script>
+		<script src="js/controls/PathControls.js"></script>
+
+		<script src="js/Detector.js"></script>
+		<script src="js/libs/stats.min.js"></script>
+		<script src="js/libs/tween.min.js"></script>
+		<script src="js/libs/jquery.knob.js"></script>
+		
+		
+		<script src="js/libs/3viewer.startup.js"></script>
+		<script src="js/libs/3viewer.post.js"></script>
+		<script src="js/libs/3viewer.js"></script>
+		
+		<script src="agarthaPlayer.js"></script>
+
+
+	</body>
+</html>
